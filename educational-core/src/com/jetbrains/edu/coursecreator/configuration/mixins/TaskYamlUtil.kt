@@ -5,6 +5,7 @@ package com.jetbrains.edu.coursecreator.configuration.mixins
 import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.util.StdConverter
 import com.jetbrains.edu.learning.courseFormat.FeedbackLink
@@ -14,7 +15,7 @@ import com.jetbrains.edu.learning.courseFormat.TaskFile
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE,
                 isGetterVisibility = JsonAutoDetect.Visibility.NONE,
                 fieldVisibility = JsonAutoDetect.Visibility.NONE)
-@JsonPropertyOrder("type", "feedback_link")
+@JsonPropertyOrder("type", "task_files", "feedback_link")
 abstract class TaskYamlMixin {
   @JsonProperty("type")
   fun getTaskType(): String {
@@ -32,7 +33,8 @@ abstract class TaskYamlMixin {
     throw NotImplementedInMixin()
   }
 
-  @JsonSerialize(converter = FeedbackLinkConverter::class)
+  @JsonSerialize(converter = FeedbackLinkToStringConverter::class)
+  @JsonDeserialize(converter = StringToFeedbackLinkConverter::class)
   @JsonProperty(value = "feedback_link", access = JsonProperty.Access.READ_WRITE) lateinit var myFeedbackLink: FeedbackLink
 }
 
@@ -44,13 +46,22 @@ private class TaskFileConverter : StdConverter<TaskFile, TaskFileWithoutPlacehol
 
 private class TaskFileWithoutPlaceholders(@JsonProperty("name") val name: String)
 
-private class FeedbackLinkConverter: StdConverter<FeedbackLink, FeedbackLink>() {
-  override fun convert(value: FeedbackLink?): FeedbackLink? {
+private class FeedbackLinkToStringConverter: StdConverter<FeedbackLink?, String>() {
+  override fun convert(value: FeedbackLink?): String? {
     if (value?.link.isNullOrBlank()) {
-      return null
+      return ""
     }
 
-    return value
+    return value?.link
   }
+}
 
+private class StringToFeedbackLinkConverter: StdConverter<String?, FeedbackLink>() {
+  override fun convert(value: String?): FeedbackLink {
+    if (value == null || value.isBlank()) {
+      return FeedbackLink()
+    }
+
+    return FeedbackLink(value)
+  }
 }

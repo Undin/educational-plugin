@@ -152,9 +152,7 @@ class YamlSerializationTest : EduTestCase() {
     task.feedbackLink.link = "example.com"
     doTest(task, """
     |type: edu
-    |feedback_link:
-    |  type: STEPIK
-    |  link: example.com
+    |feedback_link: example.com
     |""".trimMargin("|"))
   }
 
