@@ -200,13 +200,13 @@ object YamlFormatSynchronizer {
   @JvmStatic
   fun startSynchronization(project: Project) {
     loadAllFromConfigs(project)
+
+    // create missing files if feature was enabled after project was created
+    YamlFormatSynchronizer.saveAll(project)
     val configFiles = getAllConfigFiles(project)
     for (file in configFiles) {
       addSynchronizationListener(project, file)
     }
-
-    // create missing files if feature was enabled after project was created
-    YamlFormatSynchronizer.saveAll(project)
   }
 
   private fun addSynchronizationListener(project: Project, file: VirtualFile) {
