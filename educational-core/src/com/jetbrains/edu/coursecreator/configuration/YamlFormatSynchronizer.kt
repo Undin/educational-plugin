@@ -280,10 +280,6 @@ object YamlFormatSynchronizer {
     }
     val course = task.course
     val newTask = deserializeTask(taskInfo)
-    task.apply {
-      task.feedbackLink = newTask.feedbackLink
-      task.taskFiles = newTask.taskFiles
-    }
     newTask.init(course, task.lesson, false)
     newTask.lesson = task.lesson
     newTask.apply {
