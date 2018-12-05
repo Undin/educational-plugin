@@ -58,7 +58,7 @@ private class FeedbackLinkToStringConverter: StdConverter<FeedbackLink?, String>
 
 private class StringToFeedbackLinkConverter: StdConverter<String?, FeedbackLink>() {
   override fun convert(value: String?): FeedbackLink {
-    if (value == null || value.isBlank()) {
+    if (value.isNullOrBlank()) {
       return FeedbackLink()
     }
 
