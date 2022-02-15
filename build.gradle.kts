@@ -189,12 +189,6 @@ allprojects {
       }
     }
 
-    if (isStudioIDE) {
-      withType<IntelliJInstrumentCodeTask> {
-        compilerVersion.set(studioBuildVersion)
-      }
-    }
-
     withType<Test> {
       withProp(secretProperties, "stepikTestClientSecret") { environment("STEPIK_TEST_CLIENT_SECRET", it) }
       withProp(secretProperties, "stepikTestClientId") { environment("STEPIK_TEST_CLIENT_ID", it) }
@@ -632,12 +626,6 @@ project(":Edu-Android") {
     localPath.set(studioPath)
     val pluginsList = jvmPlugins + "android"
     plugins.set(pluginsList)
-  }
-
-  tasks {
-    withType<IntelliJInstrumentCodeTask> {
-      compilerVersion.set(studioBuildVersion)
-    }
   }
 
   dependencies {
