@@ -245,7 +245,7 @@ allprojects {
     }
 
     implementation("com.squareup.retrofit2:retrofit:2.4.0")
-    implementation("com.squareup.retrofit2:converter-jackson:2.3.0")
+    implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     implementation("org.jetbrains:kotlin-css-jvm:1.0.0-pre.58-kotlin-1.3.0") {
       excludeKotlinDeps()
