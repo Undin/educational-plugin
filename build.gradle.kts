@@ -50,7 +50,7 @@ val studioPath: String
   }
 
 val jacksonVersion = "2.10.0"
-val okhttpVersion = "3.14.0"
+val okhttpVersion = "4.9.3"
 
 val ideaSandbox = "${project.buildDir.absolutePath}/idea-sandbox"
 val pycharmSandbox = "${project.buildDir.absolutePath}/pycharm-sandbox"
