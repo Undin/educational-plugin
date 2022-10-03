@@ -97,7 +97,7 @@ plugins {
   idea
   kotlin("jvm") version "1.6.10"
   id("org.jetbrains.intellij") version "1.5.2"
-  id("de.undercouch.download") version "4.0.4"
+  id("de.undercouch.download") version "5.2.1"
   id("net.saliman.properties") version "1.5.1"
   id("org.gradle.test-retry") version "1.3.1"
 }
