@@ -256,7 +256,7 @@ allprojects {
       excludeKotlinDeps()
     }
     testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
-    testImplementation("io.mockk:mockk:1.12.0") {
+    testImplementation("io.mockk:mockk:1.13.2") {
       excludeKotlinDeps()
     }
   }
