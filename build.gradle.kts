@@ -239,7 +239,7 @@ allprojects {
 
     //transitive dependency is specified explicitly because of the issue https://github.com/FasterXML/jackson-dataformats-text/issues/81
     //intellij platform uses affected snakeyaml version inside
-    implementation(group = "org.yaml", name = "snakeyaml", version = "1.21")
+    implementation(group = "org.yaml", name = "snakeyaml", version = "2.0")
     implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version = jacksonVersion) {
       excludeKotlinDeps()
     }
